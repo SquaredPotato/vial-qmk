@@ -83,7 +83,7 @@
 #    define RGB_MATRIX_MAXIMUM_BRIGHTNESS 64
 
 // Rainbow swirl as startup mode.
-#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
+//#    define ENABLE_RGB_MATRIX_CYCLE_LEFT_RIGHT
 //#    define RGB_MATRIX_STARTUP_MODE RGB_MATRIX_NONE
 // Slow swirl at startup.
 
