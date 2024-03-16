@@ -17,13 +17,6 @@
 
 #pragma once
 
-/* Key matrix configuration. */
-#define MATRIX_ROW_PINS \
-    { GP29, GP26, GP5, GP4, GP9 }
-#define MATRIX_COL_PINS \
-    { GP27, GP28, GP21, GP6, GP7, GP8 }
-#define DIODE_DIRECTION COL2ROW
-
 /* Handedness. */
 // #define MASTER_RIGHT
 
@@ -34,10 +27,6 @@
 
 /* serial.c configuration (for split keyboard). */
 #define SOFT_SERIAL_PIN GP1
-
-/* RGB settings. */
-#define WS2812_PIO_USE_PIO1
-#define WS2812_DI_PIN GP0
 
 /* SPI & PMW3360 settings. */
 #define SPI_DRIVER SPID0

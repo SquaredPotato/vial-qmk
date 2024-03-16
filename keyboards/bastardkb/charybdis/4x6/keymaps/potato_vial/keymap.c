@@ -196,14 +196,32 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void rgb_matrix_update_pwm_buffers(void);
 #endif
 
-void shutdown_user(void) {
-#ifdef RGBLIGHT_ENABLE
-    rgblight_enable_noeeprom();
-    rgblight_mode_noeeprom(1);
-    rgblight_setrgb_red();
-#endif // RGBLIGHT_ENABLE
-#ifdef RGB_MATRIX_ENABLE
-    rgb_matrix_set_color_all(RGB_RED);
+bool shutdown_user(bool jump_to_bootloader) {
+    if (jump_to_bootloader) {
+        // red for bootloader
+        #ifdef RGBLIGHT_ENABLE
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(1);
+            rgblight_setrgb_red();
+        #endif // RGBLIGHT_ENABLE
+        #ifdef RGB_MATRIX_ENABLE
+            rgb_matrix_set_color_all(RGB_RED);
+            rgb_matrix_update_pwm_buffers();
+        #endif // RGB_MATRIX_ENABLE
+    } else {
+         // OFF for soft reset
+        #ifdef RGBLIGHT_ENABLE
+            rgblight_enable_noeeprom();
+            rgblight_mode_noeeprom(0);
+            rgblight_setrgb_red();
+        #endif // RGBLIGHT_ENABLE
+        #ifdef RGB_MATRIX_ENABLE
+            rgb_matrix_set_color_all(RGB_OFF);
+            rgb_matrix_update_pwm_buffers();
+        #endif // RGB_MATRIX_ENABLE
+    }
+    // force flushing -- otherwise will never happen
     rgb_matrix_update_pwm_buffers();
-#endif // RGB_MATRIX_ENABLE
+    // false to not process kb level
+    return false;
 }
