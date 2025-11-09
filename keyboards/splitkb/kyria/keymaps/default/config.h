@@ -35,6 +35,9 @@
 #    endif
 #endif
 
+// Set handedness via EEPROM
+#define EE_HANDS
+
 /* SPDX-License-Identifier: GPL-2.0-or-later */
 /* Copyright 2023 splitkb.com <support@splitkb.com> */
 
